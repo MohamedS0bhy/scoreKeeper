@@ -1,2 +1,2 @@
 # scoreKeeper
-a javaScript task for keep players scores
+a javaScript task that keeps players scores

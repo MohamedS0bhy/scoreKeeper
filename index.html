@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Score Keeper Task</title>
+    <style>
+        .winner{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1><p><span id="p1-score">0</span> To <span id="p2-score">0</span></p></h1>
+        <p style="display: inline-block">Playing To : &nbsp; <h3 style="display: inline"><span id="game-score">5</span></h3></p>
+    </div>
+    <div>
+        <input id="gameScore" type="number" name="game-score" placeholder="Game Score">
+        <button id="p1">Player One</button>
+        <button id="p2">Player Two</button>
+        <button id="reset">Reset</button>
+    </div>
+    <script>
+
+    // intialize variables 
+        let p1_display = document.querySelector("#p1-score");
+        let p2_display = document.querySelector("#p2-score");
+        let game_score_disp = document.querySelector("#game-score");
+        let p1_score = 0;
+        let p2_score = 0;
+        let gameScore = 5;
+        let gameOver = false;
+        let score_input = document.querySelector("#gameScore");
+        let player1 = document.querySelector("#p1");
+        let player2 = document.querySelector("#p2");
+        let reset = document.querySelector("#reset");
+    // end variables .
+
+    // reset function
+        function resetFun(){
+            p1_display.textContent = 0;
+            p2_display.textContent = 0;
+
+            p1_score = 0;
+            p2_score = 0;
+
+            p1_display.classList.remove('winner');
+            p2_display.classList.remove('winner');
+
+            gameOver = false;
+        }
+
+        player1.addEventListener('click' , function(){
+            if(!gameOver){
+                p1_score++;
+                if(p1_score >= gameScore){
+                    p1_display.classList.add('winner');
+                    gameOver = true;
+                }
+                p1_display.textContent = p1_score;
+            }
+            
+        });
+
+        player2.addEventListener('click' , function(){
+            if(!gameOver){
+                p2_score++;
+                if(p2_score >= gameScore){
+                    p2_display.classList.add('winner');
+                    gameOver = true;
+                }
+                p2_display.textContent = p2_score;
+            }
+            
+
+        });
+
+        score_input.addEventListener('change' , function(){
+            resetFun();
+            game_score_disp.textContent = gameScore = this.value;
+        });
+
+        reset.addEventListener('click' , function(){
+            resetFun();
+        });
+    </script>
+</body>
+</html>
